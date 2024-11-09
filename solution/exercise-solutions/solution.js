@@ -13,8 +13,7 @@ Description:
 
 Write a function `syncFunction` that logs the numbers 1 to 3 synchronously. 
 
-Then, 
-write an `asyncFunction` that logs the numbers 1 to 3 asynchronously 
+Then, write an `asyncFunction` that logs the numbers 1 to 3 asynchronously 
 using setTimeout with a delay of 0. 
 
 Observe the order of execution.
@@ -65,11 +64,11 @@ Use setTimeout to simulate fetching data asynchronously and then execute the
 callback with the data. 
 
 Display the returned data in the #section-2-output div when the 
-#callback-button is clicked.
+#exercise-1-btn is clicked.
 */
 
 // Exercise 2
-const callbackButton = document.getElementById("callback-button");
+const exercise1btn = document.getElementById("exercise-1-btn");
 
 function getDataCallback(callback) {
   setTimeout(() => {
@@ -78,7 +77,7 @@ function getDataCallback(callback) {
   }, 1000);
 }
 
-callbackButton.addEventListener("click", () => {
+exercise1btn.addEventListener("click", () => {
   getDataCallback((data) => {
     section2OutputDiv.textContent = `Callback Data: ${JSON.stringify(data)}`;
   });
@@ -144,12 +143,12 @@ return a Promise instead of using a callback.
 Name it `getDataPromise`.  
 
 Display the returned data in the #section-2-output div when the 
-#promise-button is clicked.
+#exercise-4-btn is clicked.
 
 */
 
 // Exercise 4
-const promiseButton = document.getElementById("promise-button");
+const exercise4btn = document.getElementById("exercise-4-btn");
 
 function getDataPromise() {
   return new Promise((resolve, reject) => {
@@ -160,7 +159,7 @@ function getDataPromise() {
   });
 }
 
-promiseButton.addEventListener("click", () => {
+exercise4btn.addEventListener("click", () => {
   getDataPromise()
     .then((data) => {
       section2OutputDiv.textContent = `Promise Data: ${JSON.stringify(data)}`;
@@ -246,11 +245,13 @@ Create a function `processData` that returns a Promise.
 
 Chain it after getDataPromise to process the fetched data. 
 
-Update #section-2-output to display the processed data.
+Display the returned data in the #section-2-output div when the 
+#exercise-7-btn is clicked.
 	*/
 
 // Exercise 7
 
+const exercise7btn = document.getElementById("exercise-7-btn");
 function processData(data) {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -260,7 +261,7 @@ function processData(data) {
   });
 }
 
-promiseButton.addEventListener("click", () => {
+exercise7btn.addEventListener("click", () => {
   getDataPromise()
     .then((data) => processData(data))
     .then((processedData) => {
@@ -278,13 +279,16 @@ Exercise 8: Handling Errors in Promise Chains
 
 Description: 
 
-Modify the chain in Exercise 7 to handle errors that may occur in `processData`. 
+Modify the chain from Exercise 7 to handle errors that may occur in `processData`. 
 
 Simulate an error and ensure it is caught and logged.
+
+Display the returned data in the #section-2-output div when the 
+#exercise-8-btn is clicked.
 */
 
 // Exercise 8
-
+const exercise8btn = document.getElementById("exercise-8-btn");
 function processData(data) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -294,7 +298,7 @@ function processData(data) {
   });
 }
 
-promiseButton.addEventListener("click", () => {
+exercise8btn.addEventListener("click", () => {
   getDataPromise()
     .then((data) => processData(data))
     .then((processedData) => {
@@ -316,11 +320,16 @@ Description:
 Rewrite the Promise chain from Exercise 7 using async and await. 
 
 Ensure proper error handling using try-catch.
+
+Display the returned data in the #section-2-output div when the 
+#exercise-9-btn is clicked.
 */
 
 // Exercise 9
 
-promiseButton.addEventListener("click", async () => {
+const exercise9btn = document.getElementById("exercise-9-btn");
+
+exercise9btn.addEventListener("click", async () => {
   try {
     const data = await getDataPromise();
     const processedData = await processData(data);
@@ -341,7 +350,7 @@ Exercise 10: Sequential API Requests with async/await
 
 Description: 
 
-When the #sequential-requests-button is clicked, fetch two posts 
+When the #exercise-10-btn is clicked, fetch two posts 
 sequentially from https://jsonplaceholder.typicode.com/posts/1 and 
 https://jsonplaceholder.typicode.com/posts/2 using async/await. 
 
@@ -349,9 +358,9 @@ Display both posts in the #section-1-output div.
 */
 
 // Exercise 10
-const sequentialButton = document.getElementById("sequential-requests-button");
+const exercise10btn = document.getElementById("exercise-10-btn");
 
-sequentialButton.addEventListener("click", async () => {
+exercise10btn.addEventListener("click", async () => {
   try {
     const response1 = await fetch(
       "https://jsonplaceholder.typicode.com/posts/1"
@@ -374,16 +383,16 @@ Exercise 11: Parallel API Requests with Promise.all
 
 Description: 
 
-When the #parallel-requests-button is clicked, fetch two posts in parallel 
+When the #exercise-11-btn is clicked, fetch two posts in parallel 
 from https://jsonplaceholder.typicode.com/posts/3 and 
 https://jsonplaceholder.typicode.com/posts/4 using Promise.all and 
 display the results.
 */
 
 // Exercise 11
-const parallelButton = document.getElementById("parallel-requests-button");
+const exercise11btn = document.getElementById("exercise-11-btn");
 
-parallelButton.addEventListener("click", async () => {
+exercise11btn.addEventListener("click", async () => {
   try {
     const [post1, post2] = await Promise.all([
       fetch("https://jsonplaceholder.typicode.com/posts/1").then((res) =>
@@ -409,15 +418,15 @@ Implement a function that uses Promise.race to fetch data from these two URLs:
 - https://jsonplaceholder.typicode.com/posts/6
 - https://jsonplaceholder.typicode.com/posts/8
 
-Display the result of the first one that resolves when the 
-#race-requests-button is clicked.
+Display the result of the first one that resolves to #section-1-output when the 
+#exercise-12-btn is clicked.
 
 */
 
 // Exercise 12
-const raceButton = document.getElementById("race-requests-button");
+const exercise12btn = document.getElementById("exercise-12-btn");
 
-raceButton.addEventListener("click", async () => {
+exercise12btn.addEventListener("click", async () => {
   try {
     const fastestResponse = await Promise.race([
       fetch("https://jsonplaceholder.typicode.com/posts/1").then((res) =>
@@ -443,7 +452,7 @@ Exercise 13: Using Promise.allSettled
 
 Description: 
 
-When the #all-settled-button is clicked, make multiple fetch requests 
+When the #exercise-13-btn is clicked, make multiple fetch requests 
 where some may fail:
   - "https://jsonplaceholder.typicode.com/posts/1"
   - "https://jsonplaceholder.typicode.com/invalid-url"
@@ -455,9 +464,9 @@ in #section-1-output.
 */
 
 // Exercise 13
-const allSettledButton = document.getElementById("all-settled-button");
+const exercise13btn = document.getElementById("exercise-13-btn");
 
-allSettledButton.addEventListener("click", async () => {
+exercise13btn.addEventListener("click", async () => {
   const urls = [
     "https://jsonplaceholder.typicode.com/posts/1",
     "https://jsonplaceholder.typicode.com/invalid-url", // This will fail
@@ -477,8 +486,8 @@ Exercise 14: Using Promise.any
 Description: 
 
 Implement functionality to fetch data from multiple sources using Promise.any 
-and display the first successful response when the 
-#any-promise-button is clicked.
+and display the first successful response to #section-1-output when the 
+#exercise-14-btn is clicked.
 
   - "https://jsonplaceholder.typicode.com/posts/1"
   - "https://jsonplaceholder.typicode.com/invalid-url"
@@ -487,9 +496,9 @@ and display the first successful response when the
 */
 
 // Exercise 14
-const anyButton = document.getElementById("any-promise-button");
+const exercise14btn = document.getElementById("exercise-14-btn");
 
-anyButton.addEventListener("click", async () => {
+exercise14btn.addEventListener("click", async () => {
   try {
     const firstSuccess = await Promise.any([
       fetch("https://jsonplaceholder.typicode.com/invalid-url1").then((res) =>
