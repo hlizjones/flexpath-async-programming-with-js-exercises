@@ -224,6 +224,7 @@ placeholder = `Delete
                Code
                Here
 `;
+
 /*
   Exercise 12: Using Promise.race
 
