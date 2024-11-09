@@ -1,4 +1,15 @@
 /*
+	Values to use for multiple exercises
+*/
+
+const outputDiv = document.getElementById("output");
+const callbackOutput = document.getElementById("callback-output");
+
+const section1OutputDiv = document.getElementById("section-1-output");
+const section2OutputDiv = document.getElementById("section-2-output");
+const section3OutputDiv = document.getElementById("section-3-output");
+
+/*
 Exercise 1: Understanding Synchronous vs. Asynchronous Code
 Description: Write a function syncFunction that logs numbers 1 to 3 synchronously. 
 Then, write an asyncFunction that logs numbers 1 to 3 asynchronously using setTimeout with a delay of 0. Observe the order of execution.
@@ -46,7 +57,6 @@ and then execute the callback with the data. Update the #callback-output div wit
 
 // Exercise 2
 const callbackButton = document.getElementById("callback-button");
-const callbackOutput = document.getElementById("callback-output");
 
 function getDataCallback(callback) {
   setTimeout(() => {
@@ -270,7 +280,6 @@ sequentially from https://jsonplaceholder.typicode.com/posts/1 and /posts/2 usin
 
 // Exercise 10
 const sequentialButton = document.getElementById("sequential-requests-button");
-const outputDiv = document.getElementById("output");
 
 sequentialButton.addEventListener("click", async () => {
   try {
@@ -445,37 +454,6 @@ cancelButton.addEventListener("click", () => {
 httpOutput.appendChild(cancelButton);
 
 /*
-Exercise 16: Understanding CORS and Preflight Requests
-Description: Make a POST request to an API that requires CORS preflight. 
-Observe the OPTIONS request in the Network tab and explain how CORS works.
-*/
-
-// Exercise 16
-const corsRequestButton = document.getElementById("cors-request-button");
-const httpOutput = document.getElementById("http-output");
-
-corsRequestButton.addEventListener("click", () => {
-  fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ title: "Test", body: "CORS request", userId: 1 }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      httpOutput.textContent = `Response: ${JSON.stringify(data)}`;
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-});
-
-// Explanation:
-// - When making a POST request with custom headers, the browser performs a preflight OPTIONS request.
-// - The server must respond with appropriate CORS headers to allow the actual request.
-
-/*
 Exercise 17: Handling Rejected Promises Globally
 Description: Set up a global handler for unhandled promise rejections using 
 window.addEventListener('unhandledrejection', handler). Test it by creating a rejected promise without a catch block.
@@ -571,28 +549,6 @@ async function delayedAction() {
 }
 
 delayedAction();
-
-/*
-Exercise 21: Fetching Data with Error Handling
-Description: Write an async function that fetches data from an invalid URL. 
-Use try-catch to handle the error and display an appropriate message.
-*/
-
-// Exercise 21
-
-async function fetchInvalidUrl() {
-  try {
-    const response = await fetch("https://invalid-url.com/data");
-    const data = await response.json();
-    outputDiv.textContent = JSON.stringify(data);
-  } catch (error) {
-    outputDiv.textContent = "Failed to fetch data.";
-    console.error("Error:", error);
-  }
-}
-
-// Call the function
-fetchInvalidUrl();
 
 /*
 Exercise 22: Sequential Execution with for Loop and await
@@ -724,7 +680,5 @@ Note: For exercises involving external API requests, ensure that you have a stab
 APIs support cross-origin requests. Some endpoints used in the exercises are from jsonplaceholder.typicode.com, a free online REST API for testing and prototyping.
 
 Remember to check the browser console for any errors or logs that may help in debugging or understanding the flow of asynchronous code.
-
-
 
 */
