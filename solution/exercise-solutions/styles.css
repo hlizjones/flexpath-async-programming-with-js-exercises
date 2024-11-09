@@ -29,7 +29,7 @@ button {
   cursor: pointer;
 }
 
-#output, #http-output, #callback-output {
+#section-1-output, #section-2-output {
   margin-top: 20px;
   padding: 10px;
   background-color: #e2e2e2;
