@@ -19,27 +19,28 @@ using setTimeout with a delay of 0.
 Observe the order of execution.
 */
 
-// script.js
+// Exercise 1 Solution
+// Uncomment code block below to see it run in web browser Developer Console
+/*
+  function syncFunction() {
+    console.log("Synchronous Function Start");
+    console.log(1);
+    console.log(2);
+    console.log(3);
+    console.log("Synchronous Function End");
+  }
 
-// Exercise 1
-// function syncFunction() {
-//   console.log("Synchronous Function Start");
-//   console.log(1);
-//   console.log(2);
-//   console.log(3);
-//   console.log("Synchronous Function End");
-// }
+  function asyncFunction() {
+    console.log("Asynchronous Function Start");
+    setTimeout(() => console.log(1), 0);
+    setTimeout(() => console.log(2), 0);
+    setTimeout(() => console.log(3), 0);
+    console.log("Asynchronous Function End");
+  }
 
-// function asyncFunction() {
-//   console.log("Asynchronous Function Start");
-//   setTimeout(() => console.log(1), 0);
-//   setTimeout(() => console.log(2), 0);
-//   setTimeout(() => console.log(3), 0);
-//   console.log("Asynchronous Function End");
-// }
-
-// syncFunction();
-// asyncFunction();
+  syncFunction();
+  asyncFunction();
+*/
 
 // Expected Output:
 // Synchronous Function Start
@@ -95,39 +96,42 @@ Discuss how this leads to the "Callback Pyramid of Doom".
 */
 
 // Exercise 3
-// function operation1(callback) {
-//   setTimeout(() => {
-//     console.log("Operation 1 Complete");
-//     callback();
-//   }, 1000);
-// }
+// Uncomment code block below to see it run in web browser Developer Console
+/*
+  function operation1(callback) {
+    setTimeout(() => {
+      console.log("Operation 1 Complete");
+      callback();
+    }, 1000);
+  }
 
-// function operation2(callback) {
-//   setTimeout(() => {
-//     console.log("Operation 2 Complete");
-//     callback();
-//   }, 1000);
-// }
+  function operation2(callback) {
+    setTimeout(() => {
+      console.log("Operation 2 Complete");
+      callback();
+    }, 1000);
+  }
 
-// function operation3(callback) {
-//   setTimeout(() => {
-//     console.log("Operation 3 Complete");
-//     callback();
-//   }, 1000);
-// }
+  function operation3(callback) {
+    setTimeout(() => {
+      console.log("Operation 3 Complete");
+      callback();
+    }, 1000);
+  }
 
-// function startOperations() {
-//   operation1(() => {
-//     operation2(() => {
-//       operation3(() => {
-//         console.log("All Operations Complete");
-//       });
-//     });
-//   });
-// }
+  function startOperations() {
+    operation1(() => {
+      operation2(() => {
+        operation3(() => {
+          console.log("All Operations Complete");
+        });
+      });
+    });
+  }
 
-// Call the function
-// startOperations();
+  // Call the function
+  startOperations();
+*/
 
 // This nesting leads to code that's hard to read and maintain,
 //  illustrating the "Callback Pyramid of Doom".
@@ -190,21 +194,25 @@ demonstrate the rejected state.
 // - Fulfilled: Operation completed successfully.
 // - Rejected: Operation failed.
 
-// function getRejectedPromise() {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       reject("Promise Rejected!");
-//     }, 1000);
-//   });
-// }
+// Exercise 5
+// Uncomment code block below to see it run in web browser Developer Console
+/*
+  function getRejectedPromise() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject("Promise Rejected!");
+      }, 1000);
+    });
+  }
 
-// getRejectedPromise()
-//   .then((data) => {
-//     console.log("Data:", data);
-//   })
-//   .catch((error) => {
-//     console.error("Error:", error);
-//   });
+  getRejectedPromise()
+    .then((data) => {
+      console.log("Data:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+*/
 
 // This will log 'Error: Promise Rejected!' to the console after 1 second.
 
@@ -222,18 +230,19 @@ success or failure.
 
 */
 
-// Exercise 6
-
-// getDataPromise()
-//   .then((data) => {
-//     section2OutputDiv.textContent = `Promise Data: ${JSON.stringify(data)}`;
-//   })
-//   .catch((error) => {
-//     console.error("Error:", error);
-//   })
-//   .finally(() => {
-//     console.log("Operation completed");
-//   });
+// Exercise 6 - Solution
+/*
+  getDataPromise()
+    .then((data) => {
+      section2OutputDiv.textContent = `Promise Data: ${JSON.stringify(data)}`;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    })
+    .finally(() => {
+      console.log("Operation completed");
+    });
+*/
 
 /*
 Exercise 7: Chaining Promises
@@ -534,15 +543,17 @@ Test it by creating a rejected promise without a catch block.
 */
 
 // Exercise 15
+// Uncomment code block below to see it run in web browser Developer Console
+/*
+  window.addEventListener("unhandledrejection", (event) => {
+    console.error("Unhandled Rejection:", event.reason);
+  });
 
-// window.addEventListener("unhandledrejection", (event) => {
-//   console.error("Unhandled Rejection:", event.reason);
-// });
-
-// Create a rejected promise without a catch
-// const rejectedPromise = new Promise((resolve, reject) => {
-//   reject("Promise was rejected without a catch");
-// });
+  Create a rejected promise without a catch
+  const rejectedPromise = new Promise((resolve, reject) => {
+    reject("Promise was rejected without a catch");
+  });
+*/
 
 // Not adding a .catch() to handle the rejection
 
@@ -560,24 +571,26 @@ an async function using await.
 */
 
 // Exercise 16
+// Uncomment code block below to see it run in web browser Developer Console
+/*
+  async function fetchDataAndProcess() {
+    try {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts/10"
+      );
+      const data = await response.json();
+      const processedData = await processData(data);
+      section1OutputDiv.textContent = `Processed Data: ${JSON.stringify(
+        processedData
+      )}`;
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
 
-// async function fetchDataAndProcess() {
-//   try {
-//     const response = await fetch(
-//       "https://jsonplaceholder.typicode.com/posts/10"
-//     );
-//     const data = await response.json();
-//     const processedData = await processData(data);
-//     section1OutputDiv.textContent = `Processed Data: ${JSON.stringify(
-//       processedData
-//     )}`;
-//   } catch (error) {
-//     console.error("Error:", error);
-//   }
-// }
-
-// Call the function
-// fetchDataAndProcess();
+  // Call the function
+  fetchDataAndProcess();
+*/
 
 /*
 Exercise 17: Using Promise.resolve and Promise.reject
@@ -591,30 +604,32 @@ Use them to test promise handling without asynchronous operations.
 */
 
 // Exercise 17
+// Uncomment code block below to see it run in web browser Developer Console
+/*
+  function immediateResolve() {
+    return Promise.resolve("Immediate Resolve");
+  }
 
-// function immediateResolve() {
-//   return Promise.resolve("Immediate Resolve");
-// }
+  function immediateReject() {
+    return Promise.reject("Immediate Reject");
+  }
 
-// function immediateReject() {
-//   return Promise.reject("Immediate Reject");
-// }
+  immediateResolve()
+    .then((data) => {
+      console.log("Resolved:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 
-// immediateResolve()
-//   .then((data) => {
-//     console.log("Resolved:", data);
-//   })
-//   .catch((error) => {
-//     console.error("Error:", error);
-//   });
-
-// immediateReject()
-//   .then((data) => {
-//     console.log("Resolved:", data);
-//   })
-//   .catch((error) => {
-//     console.error("Error:", error);
-//   });
+  immediateReject()
+    .then((data) => {
+      console.log("Resolved:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+*/
 
 /*
 Exercise 18: Implementing a Simple Promise-based Timeout
@@ -628,18 +643,20 @@ Use it to delay actions in your code.
 */
 
 // Exercise 18
+// Uncomment code block below to see it run in web browser Developer Console
+/*
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 
-// function delay(ms) {
-//   return new Promise((resolve) => setTimeout(resolve, ms));
-// }
+  async function delayedAction() {
+    console.log("Action will happen after 2 seconds...");
+    await delay(2000);
+    console.log("Action executed");
+  }
 
-// async function delayedAction() {
-//   console.log("Action will happen after 2 seconds...");
-//   await delay(2000);
-//   console.log("Action executed");
-// }
-
-// delayedAction();
+  delayedAction();
+*/
 
 /*
 Exercise 19: Sequential Execution with for Loop and await
@@ -653,23 +670,25 @@ Display each post inside #section-1-output as it is fetched.
 */
 
 // Exercise 19
+// Uncomment code block below to see it run in web browser Developer Console
+/*
+  async function fetchPostsSequentially() {
+    for (let i = 1; i <= 3; i++) {
+      try {
+        const response = await fetch(
+          `https://jsonplaceholder.typicode.com/posts/${i}`
+        );
+        const post = await response.json();
+        section1OutputDiv.innerHTML += `<p>Post ${i}: ${post.title}</p>`;
+      } catch (error) {
+        console.error(`Error fetching post ${i}:`, error);
+      }
+    }
+  }
 
-// async function fetchPostsSequentially() {
-//   for (let i = 1; i <= 3; i++) {
-//     try {
-//       const response = await fetch(
-//         `https://jsonplaceholder.typicode.com/posts/${i}`
-//       );
-//       const post = await response.json();
-//       section1OutputDiv.innerHTML += `<p>Post ${i}: ${post.title}</p>`;
-//     } catch (error) {
-//       console.error(`Error fetching post ${i}:`, error);
-//     }
-//   }
-// }
-
-// Call the function
-// fetchPostsSequentially();
+  // Call the function
+  fetchPostsSequentially();
+*/
 
 /*
 Exercise 20: Converting Callback-based Functions to Promises
@@ -679,8 +698,6 @@ Description:
 Given a callback-based function `readFileCallback`, wrap it in a 
 function `readFilePromise` that returns a Promise.
 */
-
-// Exercise 20
 
 // Simulating a callback-based function
 function readFileCallback(filename, callback) {
@@ -693,28 +710,31 @@ function readFileCallback(filename, callback) {
   }, 1000);
 }
 
-// Converting to a Promise-based function
-// function readFilePromise(filename) {
-//   return new Promise((resolve, reject) => {
-//     readFileCallback(filename, (error, data) => {
-//       if (error) {
-//         reject(error);
-//       } else {
-//         resolve(data);
-//       }
-//     });
-//   });
-// }
+// Exercise 20
+// Uncomment code block below to see it run in web browser Developer Console
+/*
+  // Converting to a Promise-based function
+  function readFilePromise(filename) {
+    return new Promise((resolve, reject) => {
+      readFileCallback(filename, (error, data) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(data);
+        }
+      });
+    });
+  }
 
-// Using the Promise-based function
-// readFilePromise("valid.txt")
-//   .then((data) => {
-//     console.log("File Data:", data);
-//   })
-//   .catch((error) => {
-//     console.error("Error:", error);
-//   });
-
+  // Using the Promise-based function
+  readFilePromise("valid.txt")
+    .then((data) => {
+      console.log("File Data:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+*/
 /*
 Exercise 21: Handling Multiple Async Operations with Different Timing
 
@@ -726,25 +746,27 @@ Use Promise.all to wait for all to complete and display the results.
 */
 
 // Exercise 21
+// Uncomment code block below to see it run in web browser Developer Console
+/*
+  function createDelayedPromise(value, delay) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(value);
+      }, delay);
+    });
+  }
 
-// function createDelayedPromise(value, delay) {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve(value);
-//     }, delay);
-//   });
-// }
+  async function handleMultiplePromises() {
+    const promises = [
+      createDelayedPromise("First", 3000),
+      createDelayedPromise("Second", 2000),
+      createDelayedPromise("Third", 1000),
+    ];
 
-// async function handleMultiplePromises() {
-//   const promises = [
-//     createDelayedPromise("First", 3000),
-//     createDelayedPromise("Second", 2000),
-//     createDelayedPromise("Third", 1000),
-//   ];
+    const results = await Promise.all(promises);
+    section1OutputDiv.textContent = `Results: ${results.join(", ")}`;
+  }
 
-//   const results = await Promise.all(promises);
-//   section1OutputDiv.textContent = `Results: ${results.join(", ")}`;
-// }
-
-// Call the function
-// handleMultiplePromises();
+  // Call the function
+  handleMultiplePromises();
+*/
