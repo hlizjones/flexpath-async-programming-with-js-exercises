@@ -7,19 +7,19 @@ const section2OutputDiv = document.getElementById("section-2-output");
 
 /*
 
-Exercise 1: Understanding Synchronous vs. Asynchronous Code
+  Exercise 1: Understanding Synchronous vs. Asynchronous Code
 
-Description: 
+  Description: 
 
-Write a function `syncFunction` that logs the numbers 1 to 3 synchronously. 
+  Write a function `syncFunction` that logs the numbers 1 to 3 synchronously. 
 
-Then, write an `asyncFunction` that logs the numbers 1 to 3 asynchronously 
-using setTimeout with a delay of 0. 
+  Then, write an `asyncFunction` that logs the numbers 1 to 3 asynchronously 
+  using setTimeout with a delay of 0. 
 
-Observe the order of execution.
+  Observe the order of execution.
 */
 
-// Exercise 1 Solution
+// Exercise 1 - Solution
 // Uncomment code block below to see it run in web browser Developer Console
 /*
   function syncFunction() {
@@ -55,20 +55,20 @@ Observe the order of execution.
 // 3
 
 /*
-Exercise 2: Callback Function Example
+  Exercise 2: Callback Function Example
 
-Description: 
+  Description: 
 
-Create a function `getDataCallback` that accepts a callback function. 
+  Create a function `getDataCallback` that accepts a callback function. 
 
-Use setTimeout to simulate fetching data asynchronously and then execute the 
-callback with the data. 
+  Use setTimeout to simulate fetching data asynchronously and then execute the 
+  callback with the data. 
 
-Display the returned data in the #section-2-output div when the 
-#exercise-2-btn is clicked.
+  Display the returned data in the #section-2-output div when the 
+  #exercise-2-btn is clicked.
 */
 
-// Exercise 2
+// Exercise 2 - Solution
 const exercise2btn = document.getElementById("exercise-2-btn");
 
 function getDataCallback(callback) {
@@ -85,17 +85,17 @@ exercise2btn.addEventListener("click", () => {
 });
 
 /*
-Exercise 3: The Callback Pyramid of Doom
+  Exercise 3: The Callback Pyramid of Doom
 
-Description: 
+  Description: 
 
-Simulate multiple asynchronous operations using nested callbacks 
-(at least 3 levels deep). 
+  Simulate multiple asynchronous operations using nested callbacks 
+  (at least 3 levels deep). 
 
-Discuss how this leads to the "Callback Pyramid of Doom".
+  Discuss how this leads to the "Callback Pyramid of Doom".
 */
 
-// Exercise 3
+// Exercise 3 - Solution
 // Uncomment code block below to see it run in web browser Developer Console
 /*
   function operation1(callback) {
@@ -137,21 +137,20 @@ Discuss how this leads to the "Callback Pyramid of Doom".
 //  illustrating the "Callback Pyramid of Doom".
 
 /*
-Exercise 4: Creating a Promise
+  Exercise 4: Creating a Promise
 
-Description: 
+  Description: 
 
-In the space below, rewrite the `getDataCallback` function from Exercise 2 to 
-return a Promise instead of using a callback. 
+  In the space below, rewrite the `getDataCallback` function from Exercise 2 to 
+  return a Promise instead of using a callback. 
 
-Name it `getDataPromise`.  
+  Name it `getDataPromise`.  
 
-Display the returned data in the #section-2-output div when the 
-#exercise-4-btn is clicked.
-
+  Display the returned data in the #section-2-output div when the 
+  #exercise-4-btn is clicked.
 */
 
-// Exercise 4
+// Exercise 4 - Solution
 const exercise4btn = document.getElementById("exercise-4-btn");
 
 function getDataPromise() {
@@ -174,27 +173,28 @@ exercise4btn.addEventListener("click", () => {
 });
 
 /*
-Exercise 5: Promise States
+  Exercise 5: Promise States
 
-Description: 
+  Description: 
 
-Explain the three states of a Promise: 
-  - pending
-  - fulfilled
-  - rejected
-  
-Create a Promise that intentionally rejects to 
-demonstrate the rejected state.
+  Explain the three states of a Promise: 
+    - pending
+    - fulfilled
+    - rejected
+    
+  Create a Promise that intentionally rejects to 
+  demonstrate the rejected state.
 */
 
-// Exercise 5
+// Exercise 5 - solution pt. 1
+/*
+  Promise States:
+  - Pending: Initial state, neither fulfilled nor rejected.
+  - Fulfilled: Operation completed successfully.
+  - Rejected: Operation failed.
+*/
 
-// Promise States:
-// - Pending: Initial state, neither fulfilled nor rejected.
-// - Fulfilled: Operation completed successfully.
-// - Rejected: Operation failed.
-
-// Exercise 5
+// Exercise 5 - solution pt. 2
 // Uncomment code block below to see it run in web browser Developer Console
 /*
   function getRejectedPromise() {
@@ -217,17 +217,15 @@ demonstrate the rejected state.
 // This will log 'Error: Promise Rejected!' to the console after 1 second.
 
 /*
-Exercise 6: Consuming Promises with then, catch, and finally
+  Exercise 6: Consuming Promises with then, catch, and finally
 
-Description: 
+  Description: 
 
+  Modify the `getDataPromise` method from exercise 4 to include a 
+  `finally` block that logs "Operation completed" regardless of 
+  success or failure.
 
-Modify the `getDataPromise` method from exercise 4 to include a 
-`finally` block that logs "Operation completed" regardless of 
-success or failure.
-
-  getDataPromise().then().catch().finally()
-
+  - getDataPromise().then().catch().finally()
 */
 
 // Exercise 6 - Solution
@@ -245,20 +243,19 @@ success or failure.
 */
 
 /*
-Exercise 7: Chaining Promises
+  Exercise 7: Chaining Promises
 
-Description: 
+  Description: 
 
-Create a function `processData` that returns a Promise. 
+  Create a function `processData` that returns a Promise. 
 
-Chain it after getDataPromise to process the fetched data. 
+  Chain it after getDataPromise to process the fetched data. 
 
-Display the returned data in the #section-2-output div when the 
-#exercise-7-btn is clicked.
-	*/
+  Display the returned data in the #section-2-output div when the 
+  #exercise-7-btn is clicked.
+*/
 
-// Exercise 7
-
+// Exercise 7 - solution
 const exercise7btn = document.getElementById("exercise-7-btn");
 function processData(data) {
   return new Promise((resolve) => {
@@ -283,19 +280,19 @@ exercise7btn.addEventListener("click", () => {
 });
 
 /*
-Exercise 8: Handling Errors in Promise Chains
+  Exercise 8: Handling Errors in Promise Chains
 
-Description: 
+  Description: 
 
-Modify the chain from Exercise 7 to handle errors that may occur in `processData`. 
+  Modify the chain from Exercise 7 to handle errors that may occur in `processData`. 
 
-Simulate an error and ensure it is caught and logged.
+  Simulate an error and ensure it is caught and logged.
 
-Display the returned data in the #section-2-output div when the 
-#exercise-8-btn is clicked.
+  Display the returned data in the #section-2-output div when the 
+  #exercise-8-btn is clicked.
 */
 
-// Exercise 8
+// Exercise 8 - solution
 const exercise8btn = document.getElementById("exercise-8-btn");
 function processDataExercise8(data) {
   return new Promise((resolve, reject) => {
@@ -321,20 +318,19 @@ exercise8btn.addEventListener("click", () => {
 });
 
 /*
-Exercise 9: Using async and await
+  Exercise 9: Using async and await
 
-Description: 
+  Description: 
 
-Rewrite the Promise chain from Exercise 7 using async and await. 
+  Rewrite the Promise chain from Exercise 7 using async and await. 
 
-Ensure proper error handling using try-catch.
+  Ensure proper error handling using try-catch.
 
-Display the returned data in the #section-2-output div when the 
-#exercise-9-btn is clicked.
+  Display the returned data in the #section-2-output div when the 
+  #exercise-9-btn is clicked.
 */
 
-// Exercise 9
-
+// Exercise 9 - solution
 const exercise9btn = document.getElementById("exercise-9-btn");
 
 exercise9btn.addEventListener("click", async () => {
@@ -353,19 +349,18 @@ exercise9btn.addEventListener("click", async () => {
 });
 
 /*
+  Exercise 10: Sequential API Requests with async/await
 
-Exercise 10: Sequential API Requests with async/await
+  Description: 
 
-Description: 
+  When the #exercise-10-btn is clicked, fetch two posts 
+  sequentially from https://jsonplaceholder.typicode.com/posts/5 and 
+  https://jsonplaceholder.typicode.com/posts/6 using async/await. 
 
-When the #exercise-10-btn is clicked, fetch two posts 
-sequentially from https://jsonplaceholder.typicode.com/posts/5 and 
-https://jsonplaceholder.typicode.com/posts/6 using async/await. 
-
-Display both posts in the #section-1-output div.
+  Display both posts in the #section-1-output div.
 */
 
-// Exercise 10
+// Exercise 10 - solution
 const exercise10btn = document.getElementById("exercise-10-btn");
 
 exercise10btn.addEventListener("click", async () => {
@@ -387,17 +382,17 @@ exercise10btn.addEventListener("click", async () => {
 });
 
 /*
-Exercise 11: Parallel API Requests with Promise.all
+  Exercise 11: Parallel API Requests with Promise.all
 
-Description: 
+  Description: 
 
-When the #exercise-11-btn is clicked, fetch two posts in parallel 
-from https://jsonplaceholder.typicode.com/posts/10 and 
-https://jsonplaceholder.typicode.com/posts/15 using Promise.all and 
-display the results.
+  When the #exercise-11-btn is clicked, fetch two posts in parallel 
+  from https://jsonplaceholder.typicode.com/posts/10 and 
+  https://jsonplaceholder.typicode.com/posts/15 using Promise.all and 
+  display the results.
 */
 
-// Exercise 11
+// Exercise 11 - solution
 const exercise11btn = document.getElementById("exercise-11-btn");
 
 exercise11btn.addEventListener("click", async () => {
@@ -418,20 +413,19 @@ exercise11btn.addEventListener("click", async () => {
 });
 
 /*
-Exercise 12: Using Promise.race
+  Exercise 12: Using Promise.race
 
-Description: 
+  Description: 
 
-Implement a function that uses Promise.race to fetch data from these two URLs:
-- https://jsonplaceholder.typicode.com/posts/16
-- https://jsonplaceholder.typicode.com/posts/20
+  Implement a function that uses Promise.race to fetch data from these two URLs:
+  - https://jsonplaceholder.typicode.com/posts/16
+  - https://jsonplaceholder.typicode.com/posts/20
 
-Display the result of the first one that resolves to #section-1-output when the 
-#exercise-12-btn is clicked.
-
+  Display the result of the first one that resolves to #section-1-output 
+  when the #exercise-12-btn is clicked.
 */
 
-// Exercise 12
+// Exercise 12 - solution
 const exercise12btn = document.getElementById("exercise-12-btn");
 
 exercise12btn.addEventListener("click", async () => {
@@ -456,22 +450,21 @@ exercise12btn.addEventListener("click", async () => {
 });
 
 /*
-Exercise 13: Using Promise.allSettled
+  Exercise 13: Using Promise.allSettled
 
-Description: 
+  Description: 
 
-When the #exercise-13-btn is clicked, make multiple fetch requests 
-where some may fail:
-  - "https://jsonplaceholder.typicode.com/posts/23"
-  - "https://jsonplaceholder.typicode.com/invalid-url"
-  - "https://jsonplaceholder.typicode.com/posts/25"
+  When the #exercise-13-btn is clicked, make multiple fetch requests 
+  where some may fail:
+    - "https://jsonplaceholder.typicode.com/posts/23"
+    - "https://jsonplaceholder.typicode.com/invalid-url"
+    - "https://jsonplaceholder.typicode.com/posts/25"
 
-Use Promise.allSettled to handle all outcomes and display the statuses
-in #section-1-output.
-
+  Use Promise.allSettled to handle all outcomes and display the statuses
+  in #section-1-output.
 */
 
-// Exercise 13
+// Exercise 13 - solution
 const exercise13btn = document.getElementById("exercise-13-btn");
 
 exercise13btn.addEventListener("click", async () => {
@@ -489,21 +482,20 @@ exercise13btn.addEventListener("click", async () => {
 });
 
 /*
-Exercise 14: Using Promise.any
+  Exercise 14: Using Promise.any
 
-Description: 
+  Description: 
 
-Implement functionality to fetch data from multiple sources using Promise.any 
-and display the first successful response to #section-1-output when the 
-#exercise-14-btn is clicked.
+  Implement functionality to fetch data from multiple sources using Promise.any 
+  and display the first successful response to #section-1-output when the 
+  #exercise-14-btn is clicked.
 
-  - "https://jsonplaceholder.typicode.com/invalid-url1"
-  - ""https://jsonplaceholder.typicode.com/invalid-url2"
-  - "https://jsonplaceholder.typicode.com/posts/2"
-
+    - "https://jsonplaceholder.typicode.com/invalid-url1"
+    - ""https://jsonplaceholder.typicode.com/invalid-url2"
+    - "https://jsonplaceholder.typicode.com/posts/2"
 */
 
-// Exercise 14
+// Exercise 14 - solution
 const exercise14btn = document.getElementById("exercise-14-btn");
 
 exercise14btn.addEventListener("click", async () => {
@@ -532,17 +524,17 @@ exercise14btn.addEventListener("click", async () => {
 });
 
 /*
-Exercise 15: Handling Rejected Promises Globally
+  Exercise 15: Handling Rejected Promises Globally
 
-Description: 
+  Description: 
 
-Set up a global handler for unhandled promise rejections using 
-window.addEventListener('unhandledrejection', handler). 
+  Set up a global handler for unhandled promise rejections using 
+  window.addEventListener('unhandledrejection', handler). 
 
-Test it by creating a rejected promise without a catch block.
+  Test it by creating a rejected promise without a catch block.
 */
 
-// Exercise 15
+// Exercise 15 - solution
 // Uncomment code block below to see it run in web browser Developer Console
 /*
   window.addEventListener("unhandledrejection", (event) => {
@@ -558,19 +550,18 @@ Test it by creating a rejected promise without a catch block.
 // Not adding a .catch() to handle the rejection
 
 /*
-Exercise 16: Combining Promises and Async/Await
+  Exercise 16: Combining Promises and Async/Await
 
-Description: 
+  Description: 
 
-Use both promises and async/await to fetch data and process it. 
-  - https://jsonplaceholder.typicode.com/posts/10
+  Use both promises and async/await to fetch data and process it. 
+    - https://jsonplaceholder.typicode.com/posts/10
 
-Fetch data using fetch (which returns a promise), then process it in 
-an async function using await.
-
+  Fetch data using fetch (which returns a promise), then process it in 
+  an async function using await.
 */
 
-// Exercise 16
+// Exercise 16 - solution
 // Uncomment code block below to see it run in web browser Developer Console
 /*
   async function fetchDataAndProcess() {
@@ -593,17 +584,16 @@ an async function using await.
 */
 
 /*
-Exercise 17: Using Promise.resolve and Promise.reject
+  Exercise 17: Using Promise.resolve and Promise.reject
 
-Description: 
+  Description: 
 
-Create functions that return Promise.resolve and Promise.reject immediately.
+  Create functions that return Promise.resolve and Promise.reject immediately.
 
-Use them to test promise handling without asynchronous operations.
-
+  Use them to test promise handling without asynchronous operations.
 */
 
-// Exercise 17
+// Exercise 17 - solution
 // Uncomment code block below to see it run in web browser Developer Console
 /*
   function immediateResolve() {
@@ -632,17 +622,17 @@ Use them to test promise handling without asynchronous operations.
 */
 
 /*
-Exercise 18: Implementing a Simple Promise-based Timeout
+  Exercise 18: Implementing a Simple Promise-based Timeout
 
-Description: 
+  Description: 
 
-Create a function `delay` that returns a promise that resolves 
-after a specified number of milliseconds. 
+  Create a function `delay` that returns a promise that resolves 
+  after a specified number of milliseconds. 
 
-Use it to delay actions in your code.
+  Use it to delay actions in your code.
 */
 
-// Exercise 18
+// Exercise 18 - solution
 // Uncomment code block below to see it run in web browser Developer Console
 /*
   function delay(ms) {
@@ -659,17 +649,17 @@ Use it to delay actions in your code.
 */
 
 /*
-Exercise 19: Sequential Execution with for Loop and await
+  Exercise 19: Sequential Execution with for Loop and await
 
-Description: 
+  Description: 
 
-Fetch multiple posts sequentially in a loop using async/await. 
-- HINT - `https://jsonplaceholder.typicode.com/posts/${loop_index_number}`
+  Fetch multiple posts sequentially in a loop using async/await. 
+  - HINT - `https://jsonplaceholder.typicode.com/posts/${loop_index_number}`
 
-Display each post inside #section-1-output as it is fetched.
+  Display each post inside #section-1-output as it is fetched.
 */
 
-// Exercise 19
+// Exercise 19 - solution
 // Uncomment code block below to see it run in web browser Developer Console
 /*
   async function fetchPostsSequentially() {
@@ -691,12 +681,12 @@ Display each post inside #section-1-output as it is fetched.
 */
 
 /*
-Exercise 20: Converting Callback-based Functions to Promises
+  Exercise 20: Converting Callback-based Functions to Promises
 
-Description: 
+  Description: 
 
-Given a callback-based function `readFileCallback`, wrap it in a 
-function `readFilePromise` that returns a Promise.
+  Given a callback-based function `readFileCallback`, wrap it in a 
+  function `readFilePromise` that returns a Promise.
 */
 
 // Simulating a callback-based function
@@ -710,7 +700,7 @@ function readFileCallback(filename, callback) {
   }, 1000);
 }
 
-// Exercise 20
+// Exercise 20 - solution
 // Uncomment code block below to see it run in web browser Developer Console
 /*
   // Converting to a Promise-based function
@@ -736,16 +726,16 @@ function readFileCallback(filename, callback) {
     });
 */
 /*
-Exercise 21: Handling Multiple Async Operations with Different Timing
+  Exercise 21: Handling Multiple Async Operations with Different Timing
 
-Description: 
+  Description: 
 
-Create multiple promises that resolve after different delays. 
+  Create multiple promises that resolve after different delays. 
 
-Use Promise.all to wait for all to complete and display the results.
+  Use Promise.all to wait for all to complete and display the results.
 */
 
-// Exercise 21
+// Exercise 21 - solution
 // Uncomment code block below to see it run in web browser Developer Console
 /*
   function createDelayedPromise(value, delay) {
