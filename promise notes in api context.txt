@@ -1,0 +1,121 @@
+.then and .catch are funcs on promise object that handles fulfilled (or rejected) value from promise
+
+API requests pass pass an object with a lot of different properties (headers, data, status, requests)
+    .then((response) => ) returns the entire object
+    .then((data) => ) uses one property from that object (data)
+    .catch((error) => ) uses whatever the promise returned when rejected (object, string, etc) => w/o this console is "uncaught" in promise
+
+promise
+    .then()
+    .catch() //only handles errors in first then()
+    .then()
+    .then()
+    .catch() //handles errors in all then() and also in the previous catch()
+
+.finally() //runs final code after promise regardless of fulfilled and rejected
+
+Example of using Promise.all w/ API Calls
+    Promise.all([apiRequestNames, apiRequestAddresses]).then(([apiResponseNames, apiResponseAdresses]) => {
+        names = apiResponseNames.data;
+        addresses = apiResponseAdresses.data;
+    })
+ 
+    Order of resolved objects is order of requested in Promise.all not order of resolved
+    Promise.all resolved when all promises are resolved or the first promose rejected (returns reject for all in this case)
+    Promise.all returns value -> array of resolved values from promises
+
+Promise.allSettled returns array with 2 keys per promise: 
+    1) status with fulfilled or rejected as value
+    2) reason/value key with value is fulfilled and reason if rejected
+    can access these example: apiRequestAddresses.reason.message
+    can be used to still proceed with code even if one promise fails
+
+Promise.any settled as soon as any of the promises you feed it is fulfilled or they are all rejected, in which case it's rejected with an AggregateError
+    returns value of first promise fulfilled
+    use example: mult redundant endpoints => whichever endpoint returned quickest would be used and it wouldn't matter bc they're all the same 
+
+Promise.race is settled as soon as any of the promises you feed it settle, whether they are fulfilled or rejected
+    rarely used
+
+
+Array Built-In Objects:
+    every() if func is true for every item in array, every() returns true
+    some() if func is true for at least one item in array, some() returns true
+    syntax: arr.every((el in array) => func to be evalauted w/ el)
+            arr.some((el in array) => func to be evalauted w/ el)
+
+new promise = new Promise((resolve, reject) => { //Promise is an object that takes func called executer func as one and only parameter 
+    if() {
+    code here (ex: setInterval(() => { console.log("example")}, 1500))
+    resolve(resolved value that will be passed to .then() ex: "example") //Resolve and reject are parameters of executer func -> executer func is Promise's parameter and resolve & reject are executer's parameters (not Promises)
+    } else {
+        reject()
+    }
+})
+    promise when used will be resolved once and that data will be passed to then ("example" ) would be passed
+    but code before resolve could continue to run ("example" would be logged to console every 15 seconds even after promise is resolved)
+
+setTimeout(): only executes once after timer
+setInterval(): executes repeately after the timer goes off (ie every 15 seconds)
+
+Async/Await
+    async: designates that a func is async meaning that that function will return a promise
+        wraps function's return value in a Promise
+        basically another way of writing "new Promise((resolve, reject) =>" in front of a function
+
+        Example of async w/ api request
+        const fetch = async function () => {
+            const {names} = await apiResponseNames request
+            const {adresses} = await apiResponseAdresses request
+        }
+
+Concurrent:
+
+    Imagine you have one worker who is responsible for doing many tasks. However, they can't do all the tasks at once. Instead, they switch between tasks so it feels like they're doing them at the same time.
+
+    Example: There’s one worker in a room. The worker starts cleaning the windows, but before finishing, they stop and answer the phone. After talking on the phone, they go back to cleaning the windows. Then, they stop again to fix a broken light, and so on. This is happening one after another, but it looks like the worker is doing everything at once.
+    In computer terms: Concurrent execution means the computer switches between tasks so quickly that it looks like tasks are happening at the same time, but they’re not truly running simultaneously.
+
+    Example in code: If you have 2 tasks (like two API calls), the computer will start the first task, then switch to the second task while waiting for the first to finish, and so on. This is useful when tasks don’t need to be finished right away and can wait (e.g., network requests).
+
+    const fetch = async function () => {
+            const names = apiResponseNames request
+            const adresses = apiResponseAdresses request //Second doesn't have to wait on the first to finish before starting
+            
+            const {data: names} = await names
+            const {data: adressed} = await addresses //Still waiting both calls being completed before moving forward
+            }
+
+//The worker isn’t blocked from starting the second task just because the first one is still in progress. The worker has started both tasks concurrently, meaning they’re both in progress at the same time, but the worker is switching between them.
+
+Parallel
+
+    Parallel Execution:
+    Imagine you have multiple workers in a room, and each worker is assigned a task. All the workers are working at the same time.
+
+    Example: You have 3 people in a room, and each person is asked to do a different task. One person is cleaning the windows, another is vacuuming the floor, and the third is organizing the books. Since they are all working at the same time on different tasks, it gets done much faster.
+    In computer terms: Parallel execution means tasks running simultaneously on different threads or processors.
+
+    Example in code: If you have 2 tasks (like two API calls), the computer will handle both requests at the same time, which can speed things up if you have the resources (e.g., multiple CPU cores).
+
+    Example:
+
+    async function get() {
+    await Promise.all([ //Can mix promises and await
+    (async () => { //First promise => async function returns promise that gets passed to array that is value of Promise.all
+    const { data } = await apiResponseNames request
+    console.log("Names:" data)
+    })(); //Open and closed parantheses immediately calls function
+    (async () => { //Second promise
+    const { data } = await apiResponseAdresses request
+    console.log("Adresses:" data)
+    })();
+    ]);
+    }
+
+    //First and second started simultaneously
+
+    get();
+
+    
+    
